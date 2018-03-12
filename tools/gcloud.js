@@ -7,49 +7,49 @@ const crypto = require('crypto');
 const getSendgridApiKey = {
   type: 'input',
   name: 'SENDGRID_API_KEY',
-  message: 'Your SendGrid API key: ',
+  message: 'Your SendGrid API key:',
 };
 
 const getSendgridListId = {
   type: 'input',
   name: 'SENDGRID_LIST_ID',
-  message: 'The ID of your SendGrid mailing list: ',
+  message: 'The ID of your SendGrid mailing list:',
 };
 
 const getSqlUser = {
   type: 'input',
   name: 'SQL_USER',
-  message: 'The MySQL user you created for this app: '
+  message: 'The MySQL user you created for this app:'
 };
 
 const getSqlPassword = {
   type: 'password',
   name: 'SQL_PASSWORD',
-  message: 'The password for the MySQL user: '
+  message: 'The password for the MySQL user:'
 };
 
 const getSqlDatabase = {
   type: 'input',
   name: 'SQL_DATABASE',
-  message: 'The MySQL database you created for this app: '
+  message: 'The MySQL database you created for this app:'
 };
 
 const getSqlInstanceConnectionName = {
   type: 'input',
   name: 'SQL_INSTANCE_CONNECTION_NAME',
-  message: 'The instance connection name for the Cloud SQL instance: '
+  message: 'The instance connection name for the Cloud SQL instance:'
 };
 
 const getAdminUser = {
   type: 'input',
   name: 'ADMIN_USERNAME',
-  message: 'Choose a username for the Schemebeam admin: '
+  message: 'Choose a username for the Schemebeam admin:'
 }
 
 const getAdminPassword = {
   type: 'password',
   name: 'ADMIN_PASSWORD',
-  message: 'Set a password for the Schemebeam admin: '
+  message: 'Set a password for the Schemebeam admin:'
 }
 
 console.log(`This tool will help you provision your app for GCloud.
@@ -64,7 +64,7 @@ inquirer.prompt([
   getSqlInstanceConnectionName,
   getAdminUser,
   getAdminPassword
-], (answers) => {
+]).then((answers) => {
   const appSecret = crypto.randomBytes(100).toString('hex');
   let appYaml = '';
 
@@ -78,5 +78,5 @@ inquirer.prompt([
 
   fs.writeFileSync(path.join(__dirname, '../app.yaml'), appYaml, 'utf-8');
 
-  console.log('Done! Your app should now be ready to run with npm start');
+  console.log('Done!');
 });
