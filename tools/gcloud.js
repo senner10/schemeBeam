@@ -65,13 +65,13 @@ inquirer.prompt([
   getAdminUser,
   getAdminPassword
 ]).then((answers) => {
-  const appSecret = crypto.randomBytes(100).toString('hex');
+  const appSecret = crypto.randomBytes(50).toString('hex');
   let appYaml = '';
 
   appYaml += 'runtime: nodejs\n';
   appYaml += 'env: flex\n';
   appYaml += 'env_variables:\n';
-  appYaml += Object.keys(answers).map(key => `  ${key}: ${answers[key]}\n`);
+  appYaml += Object.keys(answers).map(key => `  ${key}: ${answers[key]}\n`).join('');
   appYaml += `  APP_SECRET: ${appSecret}\n`;
   appYaml += 'beta_settings:\n';
   appYaml += `  cloud_sql_instances: ${answers.SQL_INSTANCE_CONNECTION_NAME}\n`;

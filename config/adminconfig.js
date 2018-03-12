@@ -21,5 +21,5 @@ module.exports = {
   	password: process.env.ADMIN_PASSWORD
   },
   //secret for authentication process. change to whatever you'd like.
-  passportSecret: process.env.SCHEME_BEAM_SECRET
+  passportSecret: process.env.APP_SECRET
 }
