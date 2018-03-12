@@ -30,6 +30,16 @@ The more users they refer, the higher they move up in the queue, and the more fr
 7. Change the background image in the CSS file to fit your company's branding
 8. Ready to deploy, run app.js
 
+## GCloud Installation and Setup
+
+You will need to create a Cloud SQL instance and create a user, password and
+database for use with the app
+
+Then open the Google Cloud Shell, clone and cd into this repository and run
+`npm install`, followed by `npm run gcloud:setup` and finally load the DB
+schema with `npm run db:migrate`. Now `npm start` should launch the app locally
+(to the Google Cloud Shell) and `gcloud app deploy` will deploy the app to
+AppSpot.
 
 ## License
 
