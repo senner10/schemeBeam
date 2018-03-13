@@ -60,15 +60,27 @@ export class SubmitEmail extends React.Component {
                         axios.get('api/v1/gethashbyemail?email=' + encodeURIComponent(emailData.email))
                         .then((response) => {
                             //in the case that they're not yet verified, do not supply them with their referral code or stats page
-                            if(response.data === 402) {
+                            if (response.data === 402) {
                                 this.setState({
                                     showWarning : 'block',
                                     warningMessage : 'Your account isn\'t verified yet!',
                                     showResendButton : true
                                 });
+                            } else if (response.data === 500) {
+                                this.setState({
+                                    showWarning : 'block',
+                                    warningMessage : 'An error occurred on the server',
+                                    showResendButton : true
+                                });
                             } else {
-                                const redirectHash = response.data[0].referralcode;
-                                hashHistory.push('/stats/' + redirectHash);
+                                this.setState({
+                                    showWarning : 'none',
+                                    warningMessage : null,
+                                    showResendButton : false
+                                }, () => {
+                                    const redirectHash = response.data[0].referralcode;
+                                    hashHistory.push('/stats/' + redirectHash);
+                                });
                             }
                         });
                     } else {

@@ -39,21 +39,26 @@ var ensureAuthenticated = require('../authentication/auth.js')(app);
                             settingsConfig.emailHeader,
                             settingsConfig.footerName,
                             settingsConfig.footerLocation
-                            );
+                        );
                         var content = new helper.Content(
                                 "text/html", emailTemplate);
                         var mail = new helper.Mail(from, subject, to, content);
 
                         var request = sg.emptyRequest({
-                          method: 'POST',
-                          path: '/v3/mail/send',
-                          body: mail.toJSON(),
+                            method: 'POST',
+                            path: '/v3/mail/send',
+                            body: mail.toJSON(),
                         });
 
                         sg.API(request, function(error, response) {
-                          // Handle the response here.
+                            if (error) {
+                                console.error(error);
+                                res.json(500);
+                            } else {
+                                res.sendStatus(200);
+                            }
                         });
-                        res.end();
+                        // res.end();
                     }
                 });
             }
