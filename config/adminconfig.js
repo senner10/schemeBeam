@@ -2,7 +2,7 @@
 
 module.exports = {
   //Port on which to deploy app.js
-  port: 80,
+  port: 8080,
   //Your personal SendGrid API key. 
   SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
   //The id of the list you would like your client emails to (a number, can be found at the end the url path of your list)
