@@ -1,2 +1,5 @@
 node_modules
 .DS_Store
+app.yaml
+.app.js.swp
+cloud_sql_proxy
